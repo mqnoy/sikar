@@ -21,23 +21,27 @@
             <table border="1">
                 <tr>
                     <td>id</td>
-                    <td>username</td>
-                    <td>level</td>
-                    <td>aksi</td>
+                    <td>nik</td>
+                    <td>nama</td>
+                    <td>tgl lahir</td>
                 </tr>
-                <tr>
-                    <?php
-                    $show_dataAkses = tampilDataAkses();
-                    if ($show_dataAkses != null) {
-                        foreach ($show_dataAkses as $data_akses) {
-                            echo "<td>$data_akses[id]</td>";
-                            echo "<td>$data_akses[username]</td>";
-                            echo "<td>$data_akses[level]</td>";
-                            echo "<td> <a href=\"\" ubah | hapus </td>";
-                        }
+
+                <?php
+                $show_dataAkses = tampilDataKaryawan();
+                if ($show_dataAkses != null) {
+                    foreach ($show_dataAkses as $data_akses) {
+
+                        $tgl = date("d, F Y", strtotime($data_akses['tgl_lahir']));
+                        echo "<tr>";
+                        echo "<td>$data_akses[id]</td>";
+                        echo "<td>$data_akses[nik]</td>";
+                        echo "<td>$data_akses[nama_karyawan]</td>";
+                        echo "<td>$tgl</td>";
+                        echo "</tr>";
                     }
-                    ?>
-                </tr>
+                }
+                ?>
+
             </table>
         </div>
     </div>

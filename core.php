@@ -37,6 +37,15 @@ function tampilDataAkses()
     }
 }
 
+// fungsi untuk tampilkan data ke table 
+function tampilDataKaryawan()
+{
+    if ($_SESSION['ses_level'] == 'admin') {
+        $model = selectKaryawan();
+        return $model;
+    }
+}
+
 // fungsi untuk tampilkan data ke halaman utama 
 function tampilDataLengkap($id_kar, $username)
 {

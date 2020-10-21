@@ -100,3 +100,17 @@ function selectOneKaryawan($_nik)
 
     return $res;
 }
+
+/// untuk select semua data karyawan
+function selectKaryawan()
+{
+    $conn = koneksiDB();
+    $res = [];
+    $query = "SELECT * FROM tb_karyawan";
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $res[] = $row;
+    }
+
+    return $res;
+}

@@ -11,7 +11,7 @@
     <div class="main">
         <h2>Halaman utama</h2>
         <div class="menu">
-            <a href="logout.php">logout</a> | <?php if ($_SESSION['ses_level'] == 'admin') { ?><a href="?halaman=akses">halaman akses | <?php } ?><a href="?halaman=pegawai">halaman pegawai</a>
+            <a href="logout.php">logout</a><?php if ($_SESSION['ses_level'] == 'admin') { ?>| <a href="?halaman=akses">halaman akses | <a href="?halaman=pegawai">list pegawai</a> <?php } ?>
         </div>
         <div class="content">
             <p>
@@ -31,7 +31,7 @@
                         ";
                 }
 
-                if ($_SESSION['ses_level'] == 'pegawai') {
+                if ($_SESSION['ses_level'] == 'karyawan') {
                 ?>
                     <br />
                     <a href="?halaman=pegawai&aksi=ubah_data_diri"><button>ubah data diri</button></a>
