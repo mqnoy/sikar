@@ -15,6 +15,7 @@ function login($_username, $_password)
             $_SESSION['ses_password'] = $data_akses['password'];
             $_SESSION['ses_level'] = $data_akses['level'];
             $_SESSION['ses_kar_id'] = $data_akses['kar_id'];
+            $_SESSION['ses_kar_nik'] = $data_akses['nik'];
             $_SESSION['is_logged'] = true;
         }
 
@@ -26,6 +27,22 @@ function login($_username, $_password)
     } else {
         header('Location: login.php?msg=akses_gagal'); //username atau password salah
     }
+}
+
+function updateSession($username, $password, $level, $nik)
+{
+    $_SESSION['ses_username'] = $username;
+    $_SESSION['ses_password'] = $password;
+    $_SESSION['ses_level'] = $level;
+    $_SESSION['ses_kar_nik'] = $nik;
+}
+
+/// @param km
+/// @return integer
+function kalkulasi($raw_km){
+    $const = 8000;
+    $km = (int) $raw_km; //cast to int
+    return $km * $const;
 }
 
 // fungsi untuk tampilkan data ke table 
