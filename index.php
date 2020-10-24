@@ -25,4 +25,6 @@ if (isset($_GET['halaman'])) {
             include_once 'halaman_utama.php';
             break;
     }
+}else{
+    include_once 'halaman_utama.php';
 }

@@ -34,7 +34,11 @@ function selectOneDataAll($id_kar, $username)
 {
     $conn = koneksiDB();
     $res = [];
-    $query = "SELECT * FROM tb_akses ta LEFT JOIN tb_karyawan tk ON ta.kar_id = tk.id WHERE tk.id = " . $id_kar . " AND ta.username='" . $username . "'";
+    $query = "SELECT * FROM tb_akses ta LEFT JOIN tb_karyawan tk ON ta.kar_id = tk.id WHERE tk.id = " . $id_kar;
+
+    if ($username != null) {
+        $query = "SELECT * FROM tb_akses ta LEFT JOIN tb_karyawan tk ON ta.kar_id = tk.id WHERE tk.id = " . $id_kar . " AND ta.username='" . $username . "'";
+    }
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         $res[] = $row;
@@ -56,19 +60,31 @@ function insertAccess($username, $password, $kar_id, $level)
 }
 
 /// untuk update ke table acess
-function updateAccess($username, $password)
+function updateAccess($_id_kar, $username, $password, $level)
 {
     $conn = koneksiDB();
-    $query = "UPDATE tb_akses SET password='" . $password . "' WHERE username='" . $username . "'";
+    $query = "UPDATE tb_akses SET password='" . $password . "', username='" . $username . "' ,level='" . $level . "'  
+    WHERE kar_id='" . $_id_kar . "'";
     $execute = mysqli_query($conn, $query);
     return $execute;
+}
+
+/// update ke table karywawan
+function updateKaryawan($_nik, $_nama, $_jkel, $_tgl_lahir, $_size_seragam, $_kilometer, $_jrkTem)
+{
+    $conn = koneksiDB();
+    $query = "UPDATE tb_karyawan SET 
+    tgl_lahir='" . $_tgl_lahir . "', jkel='" . $_jkel . "', nama_karyawan='" . $_nama . "', size_seragam='" . $_size_seragam . "', jrk_tempuh='" . $_jrkTem . "', kilometer='" . $_kilometer . "' WHERE nik='" . $_nik . "'";
+    var_dump($query);
+    $execute = mysqli_query($conn, $query);
+    return $execute;    
 }
 
 /// untuk delete ke table acess
 function deleteAccess($id_user)
 {
     $conn = koneksiDB();
-    $query = "DELETE FROM tb_akses WHERE id = ".$id_user;
+    $query = "DELETE FROM tb_akses WHERE id = " . $id_user;
     $execute = mysqli_query($conn, $query);
     return $execute;
 }
