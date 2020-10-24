@@ -9,7 +9,7 @@ if (isset($_POST['ubah_akses'])) {
 
         // cast string to int
         $kilo = isset($_POST['i_kilo'])  || $_POST['i_kilo'] != "" ? $_POST['i_kilo'] : 0;
-        $jrkTem = (int)$kilo * 800;
+        $jrkTem = kalkulasi($kilo);
 
         $update_access = updateAccess($_POST['id_kar'], $_POST['i_username'], md5($_POST['i_password']), $_POST['i_level']);
 
@@ -17,6 +17,7 @@ if (isset($_POST['ubah_akses'])) {
 
         if ($update_access && $update_karyawan) {
             echo "<script> alert('berhasil update')</script>";
+            updateSession($_POST['i_username'], md5($_POST['i_password']), $_POST['i_level'], $_POST['i_nik']);
         } else {
             echo "<script> alert('gagal update')</script>";
         }
@@ -29,14 +30,14 @@ if (isset($_POST['ubah_akses'])) {
 }
 
 // hapus
-if (isset($_GET['aksi']) && isset($_GET['id'])){
-    if($_GET['aksi'] == "hapus"){
+if (isset($_GET['aksi']) && isset($_GET['id'])) {
+    if ($_GET['aksi'] == "hapus") {
         $id_kar = $_GET['id'];
-        
+
         $hapus_data = deleteData($id_kar);
-        if($hapus_data){
+        if ($hapus_data) {
             echo "<script> alert('berhasil hapus data')</script>";
-        }else{
+        } else {
             echo "<script> alert('gagal hapus data')</script>";
         }
     }
@@ -61,7 +62,7 @@ if (isset($_POST['tambah_akses'])) {
     $password = $_POST['i_password'];
     $level = $_POST['i_level'];
 
-    $kalkulasi = $kilometer * 8000;
+    $kalkulasi = kalkulasi($kilometer);
 
     //check nik apakah sudah ada
     $check_nik = checkDataKaryawan($nik);
