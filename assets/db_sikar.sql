@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2020 at 08:49 PM
+-- Generation Time: Oct 24, 2020 at 06:46 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.1.29
 
@@ -42,8 +42,8 @@ CREATE TABLE `tb_akses` (
 --
 
 INSERT INTO `tb_akses` (`id`, `username`, `password`, `kar_id`, `level`, `date_inserted`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'admin', '2020-10-19 15:34:53'),
-(5, 'admin', 'a8f5f167f44f4964e6c998dee827110c', 6, 'karyawan', '2020-10-19 18:12:38');
+(1, 'admin', 'c7606d21629a29f87ddff80ca16d5219', 1, 'admin', '2020-10-19 15:34:53'),
+(5, 'rara', 'd8830ed2c45610e528dff4cb229524e9', 6, 'karyawan', '2020-10-19 18:12:38');
 
 -- --------------------------------------------------------
 
@@ -57,7 +57,7 @@ CREATE TABLE `tb_karyawan` (
   `tgl_lahir` date NOT NULL,
   `jkel` char(1) NOT NULL,
   `nama_karyawan` text NOT NULL,
-  `size_seragam` char(1) NOT NULL,
+  `size_seragam` char(15) NOT NULL,
   `jrk_tempuh` int(11) NOT NULL,
   `kilometer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -67,9 +67,9 @@ CREATE TABLE `tb_karyawan` (
 --
 
 INSERT INTO `tb_karyawan` (`id`, `nik`, `tgl_lahir`, `jkel`, `nama_karyawan`, `size_seragam`, `jrk_tempuh`, `kilometer`) VALUES
-(1, '201643502057', '2020-10-01', 'L', 'rifky', 'M', 80000, 0),
-(4, '1234', '2020-10-07', 'L', 'rr', 'M', 8000, 0),
-(6, '123', '2020-10-07', 'L', 'rr', 'M', 8000, 0);
+(1, '201643502057', '2020-10-01', 'L', 'rifky', 'M', 8000, 10),
+(4, '1234', '2020-10-07', 'L', 'rra', 'M', 8000, 1),
+(6, '123', '1995-02-04', 'P', 'rara', 'X', 1600, 2);
 
 --
 -- Indexes for dumped tables
@@ -95,13 +95,13 @@ ALTER TABLE `tb_karyawan`
 -- AUTO_INCREMENT for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_karyawan`
 --
 ALTER TABLE `tb_karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
