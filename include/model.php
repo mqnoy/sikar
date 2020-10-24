@@ -6,7 +6,8 @@ function selectOneAccess($username, $password)
 {
     $conn = koneksiDB();
     $res = [];
-    $query = "SELECT * FROM tb_akses WHERE username='" . $username . "' AND password ='" . $password . "'";
+    $query = "SELECT * FROM tb_akses INNER JOIN tb_karyawan ON tb_akses.kar_id = tb_karyawan.id
+    WHERE tb_akses.username='" . $username . "' AND tb_akses.password ='" . $password . "'";
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         $res[] = $row;
@@ -75,15 +76,16 @@ function updateKaryawan($_nik, $_nama, $_jkel, $_tgl_lahir, $_size_seragam, $_ki
     $conn = koneksiDB();
     $query = "UPDATE tb_karyawan SET 
     tgl_lahir='" . $_tgl_lahir . "', jkel='" . $_jkel . "', nama_karyawan='" . $_nama . "', size_seragam='" . $_size_seragam . "', jrk_tempuh='" . $_jrkTem . "', kilometer='" . $_kilometer . "' WHERE nik='" . $_nik . "'";
+    var_dump($query);
     $execute = mysqli_query($conn, $query);
-    return $execute;    
+    return $execute;
 }
 
 /// untuk delete ke table acess
 function deleteData($id_kar)
 {
     $conn = koneksiDB();
-    $query = "DELETE tb_akses, tb_karyawan FROM tb_akses INNER JOIN tb_karyawan ON tb_akses.kar_id = tb_karyawan.id WHERE tb_karyawan.id = '".$id_kar."'";
+    $query = "DELETE tb_akses, tb_karyawan FROM tb_akses INNER JOIN tb_karyawan ON tb_akses.kar_id = tb_karyawan.id WHERE tb_karyawan.id = '" . $id_kar . "'";
     $execute = mysqli_query($conn, $query);
     return $execute;
 }
