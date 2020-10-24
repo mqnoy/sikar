@@ -6,7 +6,7 @@ if (isset($_POST['ubah_akses'])) {
         echo "<script> alert('password tidak boleh kosong!')</script>";
     } else {
         //password di ganti
-        
+
         // cast string to int
         $kilo = isset($_POST['i_kilo'])  || $_POST['i_kilo'] != "" ? $_POST['i_kilo'] : 0;
         $jrkTem = (int)$kilo * 800;
@@ -25,6 +25,20 @@ if (isset($_POST['ubah_akses'])) {
     if (!isset($_POST['i_level'])) {
         echo "silahkan tentukan levelnya";
         return;
+    }
+}
+
+// hapus
+if (isset($_GET['aksi']) && isset($_GET['id'])){
+    if($_GET['aksi'] == "hapus"){
+        $id_kar = $_GET['id'];
+        
+        $hapus_data = deleteData($id_kar);
+        if($hapus_data){
+            echo "<script> alert('berhasil hapus data')</script>";
+        }else{
+            echo "<script> alert('gagal hapus data')</script>";
+        }
     }
 }
 
