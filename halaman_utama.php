@@ -11,7 +11,7 @@
     <div class="main">
         <h2>Halaman utama</h2>
         <div class="menu">
-            <a href="logout.php">logout</a><?php if ($_SESSION['ses_level'] == 'admin') { ?>| <a href="?halaman=akses">halaman akses | <a href="?halaman=pegawai">list pegawai</a> <?php } ?>
+            <a href="logout.php">logout</a><?php if ($_SESSION['ses_level'] == 'admin') { ?>| <a href="?halaman=akses">halaman akses </a><?php } ?>
         </div>
         <div class="content">
             <p>
