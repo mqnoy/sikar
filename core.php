@@ -10,7 +10,6 @@ function login($_username, $_password)
     // jika sukses di temukan maka masukan dalam session
     if ($model != null) {
         foreach ($model as $data_akses) {
-            var_dump($data_akses);
             $_SESSION['ses_username'] = $data_akses['username'];
             $_SESSION['ses_password'] = $data_akses['password'];
             $_SESSION['ses_level'] = $data_akses['level'];

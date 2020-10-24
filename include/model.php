@@ -76,7 +76,6 @@ function updateKaryawan($_nik, $_nama, $_jkel, $_tgl_lahir, $_size_seragam, $_ki
     $conn = koneksiDB();
     $query = "UPDATE tb_karyawan SET 
     tgl_lahir='" . $_tgl_lahir . "', jkel='" . $_jkel . "', nama_karyawan='" . $_nama . "', size_seragam='" . $_size_seragam . "', jrk_tempuh='" . $_jrkTem . "', kilometer='" . $_kilometer . "' WHERE nik='" . $_nik . "'";
-    var_dump($query);
     $execute = mysqli_query($conn, $query);
     return $execute;
 }

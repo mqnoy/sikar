@@ -5,7 +5,6 @@ if ($_SESSION['ses_level'] != "karyawan") {
 }
 
 if(isset($_POST['ubah_data_kar'])){
-    var_dump($_POST);
     $_nama = $_POST['i_nama'];
     $username = $_SESSION['ses_username'];
     $password = md5($_POST['i_password']);
