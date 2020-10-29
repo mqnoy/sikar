@@ -73,7 +73,7 @@ function tampilDataLengkap($id_kar, $username)
     $model = selectOneDataAll($id_kar, $username);
     return $model;
 }
-
+ 
 /// fungi untuk insert data akses
 function tambahDataAkses($nik, $tgl_lahir, $jkel, $nama_karyawan, $size_seragam, $jrk_tempuh, $username, $password, $level, $kilometer)
 {
