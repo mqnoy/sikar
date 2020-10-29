@@ -6,7 +6,6 @@ require 'include/model.php';
 function login($_username, $_password)
 {
     $data_akses = selectOneAccess($_username, $_password);
-
     // jika sukses di temukan maka masukan dalam session
     if ($data_akses != null) {
         foreach ($data_akses as $data_akses) {
@@ -73,7 +72,7 @@ function tampilDataLengkap($id_kar, $username)
     $model = selectOneDataAll($id_kar, $username);
     return $model;
 }
- 
+
 /// fungi untuk insert data akses
 function tambahDataAkses($nik, $tgl_lahir, $jkel, $nama_karyawan, $size_seragam, $jrk_tempuh, $username, $password, $level, $kilometer)
 {
@@ -82,7 +81,7 @@ function tambahDataAkses($nik, $tgl_lahir, $jkel, $nama_karyawan, $size_seragam,
         $lastID_insertAcc = insertAccess($username, md5($password), $level);
         if ($lastID_insertKar > 0 && $lastID_insertAcc > 0) {
             $insert_detail_data = insertDetailKaryawan($lastID_insertAcc, $lastID_insertKar, $size_seragam, $jrk_tempuh, $kilometer);
-        }else{
+        } else {
             return false;
         }
     }
