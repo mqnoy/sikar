@@ -45,10 +45,10 @@ function kalkulasi($raw_km){
 }
 
 // fungsi untuk tampilkan data ke table 
-function tampilDataAkses()
+function tampilDataAkses($keywords = null)
 {
     if ($_SESSION['ses_level'] == 'admin') {
-        $model = selectAccess();
+        $model = selectAccess($keywords);
         return $model;
     }
 }

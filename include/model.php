@@ -17,11 +17,17 @@ function selectOneAccess($username, $password)
 }
 
 /// untuk select semua ke table acess
-function selectAccess()
+function selectAccess($keywords = null)
 {
     $conn = koneksiDB();
     $res = [];
-    $query = "SELECT * FROM tb_akses ta LEFT JOIN tb_karyawan tk ON ta.kar_id = tk.id";
+    if($keywords != null){
+        $query = "SELECT * FROM tb_akses ta LEFT JOIN tb_karyawan tk ON ta.kar_id = tk.id
+        WHERE tk.nama_karyawan LIKE '%".$keywords."%' OR tk.nik LIKE '%".$keywords."%'
+        ";
+    }else{
+        $query= "SELECT * FROM tb_akses ta LEFT JOIN tb_karyawan tk ON ta.kar_id = tk.id";
+    }
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         $res[] = $row;

@@ -45,10 +45,10 @@ if (isset($_GET['aksi']) && isset($_GET['id'])) {
 
 if (isset($_POST['tambah_akses'])) {
     // cek nik apakah kosong
-    if (count(trim($_POST['i_nik'])) <= 0) {
+    // if (count(trim($_POST['i_nik'])) <= 0) {
 
-        return;
-    }
+    //     return;
+    // }
 
     $nik = $_POST['i_nik'];
     $nama_karyawan = $_POST['i_nama'];
@@ -95,84 +95,84 @@ if (isset($_POST['tambah_akses'])) {
                 $aksi = $_GET['aksi'];
                 switch ($aksi) {
                     case 'tambah':
-            ?>
-                        <form action="?halaman=akses&aksi=tambah" method="post">
-                            <table border="0" width="500px">
-                                <tr align="center">
-                                    <td colspan="3">tambah data</td>
-                                </tr>
-                                <tr>
-                                    <td>Nik</td>
-                                    <td>:</td>
-                                    <td><input type="text" name="i_nik" required /></td>
-                                </tr>
-                                <tr>
-                                    <td>Nama</td>
-                                    <td>:</td>
-                                    <td><input type="text" name="i_nama" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Nama</td>
-                                    <td>:</td>
-                                    <td>
-                                        <input type="radio" value="P" name="jkel" />Perempuan &nbsp
-                                        <input type="radio" value="L" name="jkel" />Laki-laki
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Tgl Lahir</td>
-                                    <td>:</td>
-                                    <td><input type="date" name="i_tgl_lahir" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Ukuran seragam</td>
-                                    <td>:</td>
-                                    <td>
-                                        <select name="i_seragam">
-                                            <option value="0">- pilih -</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Kilometer</td>
-                                    <td>:</td>
-                                    <td><input type="number" name="i_kilo" /></td>
-                                </tr>
-                                <tr>
-                                    <td>username</td>
-                                    <td>:</td>
-                                    <td><input type="text" name="i_username" required /></td>
-                                </tr>
-                                <tr>
-                                    <td>password</td>
-                                    <td>:</td>
-                                    <td><input type="password" name="i_password" required /></td>
-                                </tr>
-                                <tr>
-                                    <td>level</td>
-                                    <td>:</td>
-                                    <td>
-                                        <select name="i_level">
-                                            <option value="">- pilih -</option>
-                                            <option value="admin">admin</option>
-                                            <option value="karyawan">karyawan</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr align="right">
-                                    <td colspan="3">
-                                        <input type="reset" value="clear" />
-                                        <input type="submit" name="tambah_akses" value="simpan data" />
-                                    </td>
-                                </tr>
+                    ?>
+                    <form action="?halaman=akses&aksi=tambah" method="post">
+                        <table border="0" width="500px">
+                            <tr align="center">
+                                <td colspan="3">tambah data</td>
+                            </tr>
+                            <tr>
+                                <td>Nik</td>
+                                <td>:</td>
+                                <td><input type="text" name="i_nik" required /></td>
+                            </tr>
+                            <tr>
+                                <td>Nama</td>
+                                <td>:</td>
+                                <td><input type="text" name="i_nama" /></td>
+                            </tr>
+                            <tr>
+                                <td>Nama</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="radio" value="P" name="jkel" />Perempuan &nbsp
+                                    <input type="radio" value="L" name="jkel" />Laki-laki
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tgl Lahir</td>
+                                <td>:</td>
+                                <td><input type="date" name="i_tgl_lahir" /></td>
+                            </tr>
+                            <tr>
+                                <td>Ukuran seragam</td>
+                                <td>:</td>
+                                <td>
+                                    <select name="i_seragam">
+                                        <option value="0">- pilih -</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Kilometer</td>
+                                <td>:</td>
+                                <td><input type="number" name="i_kilo" /></td>
+                            </tr>
+                            <tr>
+                                <td>username</td>
+                                <td>:</td>
+                                <td><input type="text" name="i_username" required /></td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td>:</td>
+                                <td><input type="password" name="i_password" required /></td>
+                            </tr>
+                            <tr>
+                                <td>level</td>
+                                <td>:</td>
+                                <td>
+                                    <select name="i_level">
+                                        <option value="">- pilih -</option>
+                                        <option value="admin">admin</option>
+                                        <option value="karyawan">karyawan</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr align="right">
+                                <td colspan="3">
+                                    <input type="reset" value="clear" />
+                                    <input type="submit" name="tambah_akses" value="simpan data" />
+                                </td>
+                            </tr>
                         </form>
 
-                    <?php
+                        <?php
                         break;
-                    case 'ubah':
+                        case 'ubah':
                         $_id = -1;
                         $_nik = "";
                         $_nama = "";
@@ -203,7 +203,7 @@ if (isset($_POST['tambah_akses'])) {
                                 }
                             }
                         }
-                    ?>
+                        ?>
                         <form action="?halaman=akses&aksi=ubah" method="post">
                             <input type="hidden" name="id_kar" value="<?= $_id ?>" />
                             <input type="hidden" name="i_nik" value="<?= $_nik ?>" />
@@ -273,46 +273,71 @@ if (isset($_POST['tambah_akses'])) {
                                         <input type="submit" name="ubah_akses" value="ubah data" />
                                     </td>
                                 </tr>
-                        </form>
+                            </form>
 
-            <?php
-                        break;
+                            <?php
+                            break;
 
-                    default:
+                            default:
                         # code...
-                        break;
-                }
-            }
-            ?>
-            <table border="1">
-                <tr>
-                    <td>id</td>
-                    <td>nama karyawan</td>
-                    <td>tanggal lahir</td>
-                    <td>username</td>
-                    <td>level</td>
-                    <td>aksi</td>
-                </tr>
-                <?php
-                $show_dataAkses = tampilDataAkses();
-                if ($show_dataAkses != null) {
-                    foreach ($show_dataAkses as $data_akses) {
-                        echo "<tr>";
-                        echo "<td>$data_akses[id]</td>";
-                        echo "<td>$data_akses[nama_karyawan]</td>";
-                        echo "<td>$data_akses[tgl_lahir]</td>";
-                        echo "<td>$data_akses[username]</td>";
-                        echo "<td>$data_akses[level]</td>";
-                        echo "<td> <a href=\"?halaman=akses&aksi=ubah&id=$data_akses[id]\"> ubah</a> | <a href=\"?halaman=akses&aksi=hapus&id=$data_akses[id]\"> hapus</a> </td>";
-                        echo "</tr>";
+                            break;
+                        }
                     }
-                } else {
-                    echo "<tr><td>tidak ada data</td></tr>";
-                }
-                ?>
-            </table>
-        </div>
-    </div>
-</body>
+                    ?>
+                    <table border="1" width="700px">
+                        <tr>
+                            <td colspan="9" align="right">
+                                <form method="get" action="?halaman=akses&aksi=cari">
+                                    <input type="hidden" name="halaman" value="akses"/>
+                                    <input type="hidden" name="aksi" value="cari"/>
+                                    <input type="text" name="keyword"/>
+                                    <input type="submit" name="cari_pegawai" value="cari"/>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>no</td>
+                            <td>nik</td>
+                            <td>nama karyawan</td>
+                            <td>tanggal lahir</td>
+                            <td>km</td>
+                            <td>total</td>
+                            <td>username</td>
+                            <td>level</td>
+                            <td>aksi</td>
+                        </tr>
+                        <?php
+                        $show_dataAkses = null;
+                        if(isset($_GET['keyword'])){
+                            $keywords = $_GET['keyword'];
+                            $show_dataAkses = tampilDataAkses($keywords);
+                        }else{
+                            $show_dataAkses = tampilDataAkses();
+                        }
 
-</html>
+                        if ($show_dataAkses != null) {
+                            $i = 1;
+                            foreach ($show_dataAkses as $data_akses) {
+                                echo "<tr>";
+                                echo "<td>$i</td>";
+                                echo "<td>$data_akses[nik]</td>";
+                                echo "<td>$data_akses[nama_karyawan]</td>";
+                                echo "<td>$data_akses[tgl_lahir]</td>";
+                                echo "<td>$data_akses[kilometer]</td>";
+                                echo "<td>$data_akses[jrk_tempuh]</td>";
+                                echo "<td>$data_akses[username]</td>";
+                                echo "<td>$data_akses[level]</td>";
+                                echo "<td> <a href=\"?halaman=akses&aksi=ubah&id=$data_akses[id]\"> ubah</a> | <a href=\"?halaman=akses&aksi=hapus&id=$data_akses[id]\"> hapus</a> </td>";
+                                echo "</tr>";
+                                $i++;
+                            }
+                        } else {
+                            echo "<tr><td colspan=\"9\" align=\"center\">tidak ada data</td></tr>";
+                        }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </body>
+
+        </html>
