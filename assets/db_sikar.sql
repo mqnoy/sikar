@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2020 at 06:46 AM
+-- Generation Time: Oct 29, 2020 at 12:20 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.1.29
 
@@ -24,6 +24,10 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+DROP TABLE IF EXISTS tb_akses;
+DROP TABLE IF EXISTS tb_karyawan;
+DROP TABLE IF EXISTS tb_detail_karyawan;
+
 --
 -- Table structure for table `tb_akses`
 --
@@ -32,7 +36,6 @@ CREATE TABLE `tb_akses` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `kar_id` int(11) NOT NULL,
   `level` enum('admin','karyawan') NOT NULL,
   `date_inserted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,9 +44,32 @@ CREATE TABLE `tb_akses` (
 -- Dumping data for table `tb_akses`
 --
 
-INSERT INTO `tb_akses` (`id`, `username`, `password`, `kar_id`, `level`, `date_inserted`) VALUES
-(1, 'admin', 'c7606d21629a29f87ddff80ca16d5219', 1, 'admin', '2020-10-19 15:34:53'),
-(5, 'rara', 'd8830ed2c45610e528dff4cb229524e9', 6, 'karyawan', '2020-10-19 18:12:38');
+INSERT INTO `tb_akses` (`id`, `username`, `password`, `level`, `date_inserted`) VALUES
+(1, 'admin', '0cc175b9c0f1b6a831c399e269772661', 'admin', '2020-10-19 15:34:53'),
+(8, 'karyawansaya', 'c4ca4238a0b923820dcc509a6f75849b', 'karyawan', '2020-10-29 11:17:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_detail_karyawan`
+--
+
+CREATE TABLE `tb_detail_karyawan` (
+  `id` int(11) NOT NULL,
+  `size_seragam` char(15) NOT NULL,
+  `jrk_tempuh` int(11) NOT NULL,
+  `kilometer` int(11) NOT NULL,
+  `kar_id` int(11) NOT NULL,
+  `akses_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_detail_karyawan`
+--
+
+INSERT INTO `tb_detail_karyawan` (`id`, `size_seragam`, `jrk_tempuh`, `kilometer`, `kar_id`, `akses_id`) VALUES
+(1, 'XL', 16000, 2, 1, 1),
+(4, 'M', 16000, 2, 8, 8);
 
 -- --------------------------------------------------------
 
@@ -56,20 +82,16 @@ CREATE TABLE `tb_karyawan` (
   `nik` varchar(50) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `jkel` char(1) NOT NULL,
-  `nama_karyawan` text NOT NULL,
-  `size_seragam` char(15) NOT NULL,
-  `jrk_tempuh` int(11) NOT NULL,
-  `kilometer` int(11) NOT NULL
+  `nama_karyawan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_karyawan`
 --
 
-INSERT INTO `tb_karyawan` (`id`, `nik`, `tgl_lahir`, `jkel`, `nama_karyawan`, `size_seragam`, `jrk_tempuh`, `kilometer`) VALUES
-(1, '201643502057', '2020-10-01', 'L', 'rifky', 'M', 8000, 10),
-(4, '1234', '2020-10-07', 'L', 'rra', 'M', 8000, 1),
-(6, '123', '1995-02-04', 'P', 'rara', 'X', 1600, 2);
+INSERT INTO `tb_karyawan` (`id`, `nik`, `tgl_lahir`, `jkel`, `nama_karyawan`) VALUES
+(1, '201643502057', '2020-09-27', 'L', 'azmi'),
+(8, 'karyawansaya', '2020-10-01', 'L', '1');
 
 --
 -- Indexes for dumped tables
@@ -79,6 +101,12 @@ INSERT INTO `tb_karyawan` (`id`, `nik`, `tgl_lahir`, `jkel`, `nama_karyawan`, `s
 -- Indexes for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_detail_karyawan`
+--
+ALTER TABLE `tb_detail_karyawan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -95,13 +123,19 @@ ALTER TABLE `tb_karyawan`
 -- AUTO_INCREMENT for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tb_detail_karyawan`
+--
+ALTER TABLE `tb_detail_karyawan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_karyawan`
 --
 ALTER TABLE `tb_karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

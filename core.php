@@ -5,17 +5,21 @@ require 'include/model.php';
 
 function login($_username, $_password)
 {
-    $model = selectOneAccess($_username, $_password);
+    $data_akses = selectOneAccess($_username, $_password);
 
     // jika sukses di temukan maka masukan dalam session
-    if ($model != null) {
-        foreach ($model as $data_akses) {
-            $_SESSION['ses_username'] = $data_akses['username'];
-            $_SESSION['ses_password'] = $data_akses['password'];
-            $_SESSION['ses_level'] = $data_akses['level'];
-            $_SESSION['ses_kar_id'] = $data_akses['kar_id'];
-            $_SESSION['ses_kar_nik'] = $data_akses['nik'];
-            $_SESSION['is_logged'] = true;
+    if ($data_akses != null) {
+        foreach ($data_akses as $data_akses) {
+
+            $select_karyawan = selectOneKaryawan(null, $data_akses['kar_id']);
+            foreach ($select_karyawan as $data_karyawan) {
+                $_SESSION['ses_username'] = $data_akses['username'];
+                $_SESSION['ses_password'] = $data_akses['password'];
+                $_SESSION['ses_level'] = $data_akses['level'];
+                $_SESSION['ses_kar_id'] = $data_karyawan['id'];
+                $_SESSION['ses_kar_nik'] = $data_karyawan['nik'];
+                $_SESSION['is_logged'] = true;
+            }
         }
 
         if (isset($_SESSION['is_logged']) && isset($_SESSION['ses_username']) && isset($_SESSION['ses_password'])) {
@@ -38,7 +42,8 @@ function updateSession($username, $password, $level, $nik)
 
 /// @param km
 /// @return integer
-function kalkulasi($raw_km){
+function kalkulasi($raw_km)
+{
     $const = 8000;
     $km = (int) $raw_km; //cast to int
     return $km * $const;
@@ -73,8 +78,13 @@ function tampilDataLengkap($id_kar, $username)
 function tambahDataAkses($nik, $tgl_lahir, $jkel, $nama_karyawan, $size_seragam, $jrk_tempuh, $username, $password, $level, $kilometer)
 {
     if ($_SESSION['ses_level'] == 'admin') {
-        $lastID_insertKar = insertKaryawan($nik, $tgl_lahir, $jkel, $nama_karyawan, $size_seragam, $jrk_tempuh, $kilometer);
-        insertAccess($username, md5($password), $lastID_insertKar, $level);
+        $lastID_insertKar = insertKaryawan($nik, $tgl_lahir, $jkel, $nama_karyawan);
+        $lastID_insertAcc = insertAccess($username, md5($password), $level);
+        if ($lastID_insertKar > 0 && $lastID_insertAcc > 0) {
+            $insert_detail_data = insertDetailKaryawan($lastID_insertAcc, $lastID_insertKar, $size_seragam, $jrk_tempuh, $kilometer);
+        }else{
+            return false;
+        }
     }
 }
 
